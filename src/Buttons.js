@@ -95,15 +95,14 @@ function Buttons() {
                 siki.push(Keisan(str.slice(j + 1, i)))
             }
         }
-        
+
         let siki2 = []
         for (let i = 0; i < siki.length; i++){
-            let n = parseFloat(siki[i])
-            while(i + 1 < str.length && !isNaN(siki[i + 1])){
-                n = n * 10 + parseFloat(siki[i + 1])
+            const j = i
+            while(i + 1 < str.length && (!isNaN(siki[i + 1]) || siki[i + 1] === ".")){
                 i++
             }
-            siki2.push(n)
+            siki2.push(siki.slice(j, i+1).join(""))
             if(i !== str.length-1) {
                 siki2.push(siki[i + 1])
                 i++
@@ -113,13 +112,13 @@ function Buttons() {
         let i = 1;
         while (i < siki2.length){
             if(siki2[i] === "%") {
-                siki2[i-1] %= siki2[i+1]
+                siki2[i-1] = (parseFloat(siki2[i-1]) % parseFloat(siki2[i+1])).toString()
                 siki2.splice(i, 2)
             } else if(siki2[i] === "÷") {
-                siki2[i-1] /= siki2[i+1]
+                siki2[i-1] = (parseFloat(siki2[i-1]) / parseFloat(siki2[i+1])).toString()
                 siki2.splice(i, 2)
             } else if(siki2[i] === "×") {
-                siki2[i-1] *= siki2[i+1]
+                siki2[i-1] = (parseFloat(siki2[i-1]) * parseFloat(siki2[i+1])).toString()
                 siki2.splice(i, 2)
             } else {
                 i += 2
@@ -129,17 +128,17 @@ function Buttons() {
         i = 1;
         while (i < str.length){
             if(siki2[i] === "+") {
-                siki2[i-1] += siki2[i+1]
+                siki2[i-1] = (parseFloat(siki2[i-1]) + parseFloat(siki2[i+1])).toString()
                 siki2.splice(i, 2)
             } else if(siki2[i] === "-") {
-                siki2[i-1] -= siki2[i+1]
+                siki2[i-1] = (parseFloat(siki2[i-1]) - parseFloat(siki2[i+1])).toString()
                 siki2.splice(i, 2)
             } else {
                 i += 2
             }
         }
 
-        return siki2[0].toString()
+        return siki2[0]
     }
 
     const clicke = () => {
