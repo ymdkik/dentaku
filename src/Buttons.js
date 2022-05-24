@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { textC, setTextC } from './Calculation'
+import { setTextC } from './Calculation'
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
@@ -33,7 +33,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Buttons() {
-    const text = useContext(textC)
     const setText = useContext(setTextC)
 
     const clickb = (s) => {

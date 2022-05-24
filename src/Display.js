@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { textC, setTextC } from './Calculation'
+import { textC } from './Calculation'
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import './Display.css';
